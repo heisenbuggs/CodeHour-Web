@@ -1,0 +1,22 @@
+.login_heading {
+    color: #F3673D;
+}
+
+.login_wave img {
+    display: list-item;
+    height: 40vh;
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.login_container {
+    display: list-item;
+}
+
+.login_label {
+    color: "#F3673D" !important;
+}
+
+
