@@ -5,7 +5,7 @@
 .login_wave img {
     display: list-item;
     height: 190px;
-    width: 20px;
+    max-width: 230px;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -23,16 +23,20 @@
     margin-top: 5px;
 }
 
+.login_form {
+    align-items: center;
+    display: inline;
+}
+
 .login_button {
     padding-left: 35%;
-    padding-right: 45%;
+    padding-right: 35%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-top: 20px;
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    width: 60%;
+    justify-content: center;
     background-color: #F3673D;
     border-radius: 30px;
     border-width: 0;
@@ -43,19 +47,17 @@
 .login_buttonContainer h3 {
     color: darkgray;
     align-items: center;
-    text-align: center;
 }
 
 .signup_button {
-    padding-left: 33%;
-    padding-right: 47%;
+    padding-left: 35%;
+    padding-right: 35%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-top: 20px;
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    width: 60%;
+    justify-content: center;
     background-color: #2F2B28;
     border-radius: 30px;
     border-width: 0;
@@ -67,9 +69,25 @@ button:focus {
     outline: none;
 }
 
+.login_or {
+    text-align: center;
+}
+
 .login_goback {
     text-align: center;
     color: #F3673D;
 }
 
+.signup_avatar {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+}
 
+.signup_avatarcontainer {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 20%;
+    border-color: #F3673D;
+    margin-bottom: 10px;
+}

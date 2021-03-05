@@ -3,6 +3,7 @@ import {
   Container,
   IconButton,
   makeStyles,
+  MenuItem,
   TextField,
   withStyles,
 } from "@material-ui/core";
@@ -14,15 +15,16 @@ import {
   VisibilityOff,
 } from "@material-ui/icons";
 import themeColor from "./Apptheme";
+import timezoneAll from "./timezones";
 
 const useStyles = makeStyles((theme) => ({
   emailbox: {
-    width: "73vw",
+    width: "90%",
     marginLeft: theme.spacing(2),
     display: "flex",
   },
   otherbox: {
-    width: "73vw",
+    width: "90%",
     marginTop: theme.spacing(2),
     marginLeft: theme.spacing(2),
   },
@@ -53,6 +55,7 @@ export const LoginPageComponent = () => {
     email: "",
     password: "",
     timezone: "",
+    gender: "",
     showPassword: false,
   });
 
@@ -77,6 +80,10 @@ export const LoginPageComponent = () => {
         <img src="./assets/full-logo.png" alt="logo" />
         <h2 className="login_heading">Welcome Coder!!!</h2>
       </Container>
+      {/* <Container className="signup_avatar">
+        <img src="./assets/male.png" alt="male_avatar" />
+        <img src="./assets/female.png" alt="female_avatar" />
+      </Container> */}
       <Container className="login_container">
         <Container>
           <form noValidate className="login_form">
@@ -87,8 +94,9 @@ export const LoginPageComponent = () => {
                 autoComplete="email"
                 value={values.email}
                 onChange={handleChange("email")}
+                style={{ width: "90%" }}
                 variant="outlined"
-                labelWidth={60}
+                labelWidth={50}
                 required
                 InputProps={{
                   endAdornment: (
@@ -108,7 +116,8 @@ export const LoginPageComponent = () => {
                 value={values.password}
                 onChange={handleChange("password")}
                 variant="outlined"
-                labelWidth={60}
+                labelWidth={50}
+                style={{ width: "90%" }}
                 type={values.showPassword ? "text" : "password"}
                 required
                 InputProps={{
@@ -134,7 +143,10 @@ export const LoginPageComponent = () => {
                 <CssTextField
                   className={classes.otherbox}
                   label="TimeZone"
+                  value={values.timezone}
+                  select
                   onChange={handleChange("timezone")}
+                  style={{ width: "90%" }}
                   variant="outlined"
                   labelWidth={60}
                   required
@@ -145,7 +157,11 @@ export const LoginPageComponent = () => {
                       </IconButton>
                     ),
                   }}
-                />
+                >
+                  {timezoneAll.map((e) => (
+                    <MenuItem value={e}>{`GMT ${e}`}</MenuItem>
+                  ))}
+                </CssTextField>
               </Container>
             )}
           </form>
@@ -156,7 +172,7 @@ export const LoginPageComponent = () => {
               className="login_button"
               onClick={() => alert(JSON.stringify(values))}
             >
-              <h2>LogIn</h2>
+              <h2 className="button_name">LogIn</h2>
             </button>
           )}
           {!signup && <h3 className="login_or">--------OR--------</h3>}
@@ -165,7 +181,7 @@ export const LoginPageComponent = () => {
               className="signup_button"
               onClick={() => setSignup(!signup)}
             >
-              <h2>SignUp</h2>
+              <h2 className="button_name">SignUp</h2>
             </button>
           )}
           {signup && (
@@ -173,13 +189,13 @@ export const LoginPageComponent = () => {
               className="signup_button"
               onClick={() => alert(JSON.stringify(values))}
             >
-              <h2>Done!!!</h2>
+              <h2 className="button_name">Register</h2>
             </button>
           )}
           {signup && (
-            <h5 className="login_goback" onClick={() => setSignup(!signup)}>
+            <h4 className="login_goback" onClick={() => setSignup(!signup)}>
               Go Back to LogIn
-            </h5>
+            </h4>
           )}
         </Container>
       </Container>
