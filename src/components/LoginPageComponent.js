@@ -55,14 +55,21 @@ export const LoginPageComponent = () => {
     email: "",
     password: "",
     timezone: "",
-    gender: "",
     showPassword: false,
   });
 
   const [signup, setSignup] = useState(false);
+  const [touchmail, setTouchmail] = useState(false);
+  const [touchpass, setTouchpass] = useState(false);
+  const [touchtime, setTouchtime] = useState(false);
+
+  const touch = (e) => {
+    if (e === "touchmail") setTouchmail(true);
+    else if (e === "touchpass") setTouchpass(true);
+    else if (e === "touchtime") setTouchtime(true);
+  };
 
   const handleChange = (prop) => (event) => {
-    console.log(prop);
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -74,16 +81,24 @@ export const LoginPageComponent = () => {
     event.preventDefault();
   };
 
+  const validateMail = (mail) => {
+    // Tells mail is correct
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        mail
+      )
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Fragment>
       <Container className="login_wave">
         <img src="./assets/full-logo.png" alt="logo" />
         <h2 className="login_heading">Welcome Coder!!!</h2>
       </Container>
-      {/* <Container className="signup_avatar">
-        <img src="./assets/male.png" alt="male_avatar" />
-        <img src="./assets/female.png" alt="female_avatar" />
-      </Container> */}
       <Container className="login_container">
         <Container>
           <form noValidate className="login_form">
@@ -93,8 +108,15 @@ export const LoginPageComponent = () => {
                 label="Email ID"
                 autoComplete="email"
                 value={values.email}
+                onFocus={() => touch("touchmail")}
                 onChange={handleChange("email")}
                 style={{ width: "90%" }}
+                error={touchmail && !validateMail(values.email)}
+                helperText={
+                  touchmail && !validateMail(values.email)
+                    ? "Email ID not valid!"
+                    : ""
+                }
                 variant="outlined"
                 labelWidth={50}
                 required
@@ -114,7 +136,14 @@ export const LoginPageComponent = () => {
                 label="Password"
                 autoComplete="current-password"
                 value={values.password}
+                onFocus={() => touch("touchpass")}
                 onChange={handleChange("password")}
+                error={touchpass && values.password === ""}
+                helperText={
+                  touchpass && values.password === ""
+                    ? "Password not valid!"
+                    : ""
+                }
                 variant="outlined"
                 labelWidth={50}
                 style={{ width: "90%" }}
@@ -143,8 +172,15 @@ export const LoginPageComponent = () => {
                 <CssTextField
                   className={classes.otherbox}
                   label="TimeZone"
+                  onFocus={() => touch("touchtime")}
                   value={values.timezone}
                   select
+                  error={touchtime && values.timezone === ""}
+                  helperText={
+                    touchtime && values.timezone === ""
+                      ? "Enter the correct Timezone!"
+                      : ""
+                  }
                   onChange={handleChange("timezone")}
                   style={{ width: "90%" }}
                   variant="outlined"
